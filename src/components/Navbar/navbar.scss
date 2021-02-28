@@ -1,0 +1,49 @@
+.navbar{
+    background-color: rgb(245, 245, 245);
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    .logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+.cart{
+    display: flex;
+    height: 40px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2px;
+    padding-right: 2px;
+    transition: 0.6s;
+    cursor: pointer;
+    
+    &:hover{
+        .indicator{
+            top: 0px;
+            right: -3px;
+            height: 100%;
+            width: 130%;
+            font-size: 23px;
+            transition: 0.6s;
+        }
+    }
+    .indicator{
+        
+        font-size: 10px;
+        height: 15px;
+        color: white;
+        width: 15px;
+        border-radius: 50%;
+        top: 0px;
+        right: -0px;
+        text-align: center;
+        background-color: rgb(241, 58, 58);
+        position: absolute;
+    }
+    .carticon{
+        font-size: 30px;
+    }
+}

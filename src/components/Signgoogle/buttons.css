@@ -1,0 +1,24 @@
+.buttons {
+  margin-top: 30px;
+  border-radius: 10px;
+  padding: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #dac6ff;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.buttons:hover {
+  -webkit-transition: .4s;
+  transition: .4s;
+  background-color: #625b7c;
+  color: white;
+}
+/*# sourceMappingURL=buttons.css.map */

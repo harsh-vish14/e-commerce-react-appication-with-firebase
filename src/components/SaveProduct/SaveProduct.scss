@@ -1,0 +1,32 @@
+.saveProduct {
+    // background-color: yellowgreen;
+    // justify-content: flex-start;
+    .taking-inputs{
+        margin: 25px;
+        // display: flex;
+        // justify-content: flex-start;
+        // background-color: yellowgreen;
+        width: 90%;
+        input{
+            // background-color: yellow;
+        }
+    }
+    .images-upload{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+.images-upload-button{
+    color:white;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+    background-color: rgb(91, 50, 205);
+    &:hover{
+        box-shadow: 5px 5px 2px rgba(51, 42, 179, 0.315);
+    }
+}
+img{
+    margin: 10px;
+}
