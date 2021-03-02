@@ -1,4 +1,4 @@
-// import './App.css';
+
 import { useContext } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Login from './components/authentication/Login/login';
@@ -20,7 +20,7 @@ function App() {
         <Route path='/Register' >
           <Register />
         </Route>
-        <Route to='submitProduct'>
+        <Route path='/submitProduct'>
           <SaveProduct />
         </Route>
         {user ? (<>

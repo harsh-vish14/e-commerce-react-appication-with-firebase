@@ -1,7 +1,7 @@
 import React,{useContext, useState,} from 'react'
 
 import { UserContext } from '../../../context/context'
-import { auth } from '../../../firebase';
+import { auth, db } from '../../../firebase';
 import { signInWithGoogle } from '../../../services/auth'
 import Signinbutton from '../../Signgoogle/buttons';
 import { RiLock2Fill } from 'react-icons/all';
@@ -11,7 +11,6 @@ import { Link,Redirect } from 'react-router-dom';
 const Register = () => {
     
     const [formdata, setformdata] = useState({
-        username: '',
         email: '',
         password: ''
     })
@@ -22,6 +21,10 @@ const Register = () => {
     const SignInWithGoogle = async () => {
         let user = await signInWithGoogle();
         if (user) {
+            db.collection('users').doc(user.uid).set({
+                name: user.displayName,
+                cart: []
+            })
             setuser(user);
             setlogged(true);
         }
@@ -31,6 +34,10 @@ const Register = () => {
         await auth.createUserWithEmailAndPassword(formdata.email, formdata.password)
             .then((res => {
                 console.log(res.user);
+                db.collection('users').doc(res.user.uid).set({
+                    name: '',
+                    cart: []
+                })
                 setlogged(true)
                 setuser(res.user);
             }))
@@ -64,10 +71,6 @@ const Register = () => {
                 <div style={{ color: 'black', fontSize: '25px', fontWeight: '600' }}>Register</div>
                  {email ? (<div style={{ color:'red'}}>User Already exits</div>):null}
                 <div className='form'>
-                    <div className="form-floating mb-3">
-                        <input name='username' type="text" className="form-control" id="floatingInput" placeholder="xyz" onChange={valuechanged} value={formdata.username} />
-                        <label for="floatingInput">User name</label>
-                    </div>
                     {emailerror ? (<div style={{ color: 'red' }}>PLs provide correct email</div>) : null}
                     <div className="form-floating mb-3">
                         <input name='email' type="email" className='form-control' id="floatingInput" placeholder="name@example.com" onChange={valuechanged} value={formdata.email} />

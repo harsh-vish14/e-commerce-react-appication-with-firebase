@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom'
 import { UserContext } from '../../../context/context'
 import { signInWithGoogle } from '../../../services/auth'
 import Signinbutton from '../../Signgoogle/buttons';
-import { auth } from '../../../firebase';
+import { auth, db } from '../../../firebase';
 
 const Login = () => {
     const [formdata, setformdata] = useState({
@@ -51,6 +51,10 @@ const Login = () => {
     const SignInWithGoogle = async () => {
         let user = await signInWithGoogle();
         if (user) {
+            db.collection(`users`).doc(user.uid).set({
+                name: user.displayName,
+                cart: []
+            })
             setuser(user);
             setlogged(true);
             

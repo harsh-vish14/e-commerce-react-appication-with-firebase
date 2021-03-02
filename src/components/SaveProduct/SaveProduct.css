@@ -18,9 +18,13 @@
   padding-right: 15px;
   border-radius: 10px;
   background-color: #5b32cd;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .images-upload-button:hover {
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   -webkit-box-shadow: 5px 5px 2px rgba(51, 42, 179, 0.315);
           box-shadow: 5px 5px 2px rgba(51, 42, 179, 0.315);
 }
