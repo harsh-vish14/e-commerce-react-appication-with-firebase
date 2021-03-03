@@ -23,7 +23,6 @@ const Register = () => {
         if (user) {
             db.collection('users').doc(user.uid).set({
                 name: user.displayName,
-                cart: []
             })
             setuser(user);
             setlogged(true);
@@ -35,9 +34,8 @@ const Register = () => {
             .then((res => {
                 console.log(res.user);
                 db.collection('users').doc(res.user.uid).set({
-                    name: '',
-                    cart: []
-                })
+                    name: formdata.email.replace('@gmail.com',''),
+                },{ merge: true })
                 setlogged(true)
                 setuser(res.user);
             }))
@@ -82,7 +80,7 @@ const Register = () => {
                         <label for="floatingPassword">Password</label>
                     </div>
                     <button type="button" class="btn btn-success" onClick={registerbro} style={{ marginTop: '10px' }}>Register <RiLock2Fill /></button>
-                 <div>Already have Account? <Link to='/'>Login</Link></div>   
+                 <div>Already have Account? <Link to='/' style={{color:'#0247ae'}}>Login</Link></div>   
                 </div>
                 
             </div>

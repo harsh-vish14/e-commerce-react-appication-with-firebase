@@ -1,8 +1,9 @@
-
+import ProductDetails from './components/ProductDetails/ProductDetails'
 import { useContext } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Login from './components/authentication/Login/login';
 import Register from './components/authentication/register/register';
+import Cart from './components/Cart/Cart';
 import Home from './components/Home/Home';
 import SaveProduct from './components/SaveProduct/SaveProduct';
 import { UserContext } from './context/context';
@@ -27,6 +28,10 @@ function App() {
           <Route path='/home'>
             <Home />
           </Route>
+          <Route path='/cart'>
+            <Cart />
+          </Route>
+        <Route path="/product-details/:id" component={ProductDetails} />
         </>) : (<Redirect to='/' />)}
       </Switch>
     </BrowserRouter>

@@ -53,8 +53,7 @@ const Login = () => {
         if (user) {
             db.collection(`users`).doc(user.uid).set({
                 name: user.displayName,
-                cart: []
-            })
+            },{ merge: true })
             setuser(user);
             setlogged(true);
             
@@ -80,7 +79,7 @@ const Login = () => {
                     </div>
                     <button type="button" class="btn btn-success" onClick={loginbro} style={{ marginTop: '10px' }}>Login <RiLock2Fill /></button>
                     <div>
-                        Not have a account? <Link to="/Register" >Register</Link>
+                        Not have a account? <Link to="/Register" style={{color:'#0247ae'}}>Register</Link>
                     </div>
                 </div>
             </div>

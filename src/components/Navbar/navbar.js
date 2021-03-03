@@ -10,19 +10,21 @@ const Navbar = ({elementNumber}) => {
     return (
         <div className="navbar">
             {
-                console.log("this is current user uid: "+user.uid)
+                console.log("this is current user uid: "+user)
             }
             <div className="logo">
                 <Link to="/home" style={{textDecoration:"none",color:'black'}}><IoStorefrontOutline /> E-commerce</Link>
             </div>
             <div className="information">
                 Welcome, {user.displayName ? (<>{user.displayName} <img src={user.photoURL} alt="profile image" height="30px" style={{ borderRadius: "50%" }} /></>)
-                    : (<FaRegUserCircle />
+                    : ( < FaRegUserCircle />
                     )}
             </div>
             <div className="cart" >
                 <div className='indicator'>{elementNumber}</div>
+                <Link to='/cart' style={{color:'black'}}>
                     <MdShoppingCart className='carticon'/>
+                </Link>
             </div>
         </div>
     )

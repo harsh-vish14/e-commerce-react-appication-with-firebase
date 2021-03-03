@@ -1,0 +1,33 @@
+.details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 10px;
+}
+
+.details .carousel {
+  width: 50%;
+  min-width: 600px;
+}
+
+.details .product-details {
+  width: 50%;
+  padding: 10px;
+}
+
+.details .product-details .title {
+  text-transform: capitalize;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.details .product-details .Price {
+  font-size: 20px;
+  font-weight: 700;
+}
+/*# sourceMappingURL=Product.css.map */
