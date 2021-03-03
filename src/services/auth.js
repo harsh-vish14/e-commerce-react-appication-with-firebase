@@ -4,10 +4,8 @@ const signInWithGoogle = async () => {
     let user;
     await auth.signInWithPopup(provider)
         .then((res) => {
-            console.log(res.user);
             user = res.user
         }).catch((err) => {
-            console.log(err.message);
         })
     return user;
 }
@@ -19,7 +17,6 @@ const logOut = async () => {
             sucess = true;
         })
         .catch((err) => {
-            console.log(err);
         })
     return sucess
 }

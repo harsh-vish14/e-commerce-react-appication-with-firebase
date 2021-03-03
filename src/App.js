@@ -24,6 +24,7 @@ function App() {
         <Route path='/submitProduct'>
           <SaveProduct />
         </Route>
+        <Route path="/product-details/:id" component={ProductDetails} />
         {user ? (<>
           <Route path='/home'>
             <Home />
@@ -31,7 +32,6 @@ function App() {
           <Route path='/cart'>
             <Cart />
           </Route>
-        <Route path="/product-details/:id" component={ProductDetails} />
         </>) : (<Redirect to='/' />)}
       </Switch>
     </BrowserRouter>

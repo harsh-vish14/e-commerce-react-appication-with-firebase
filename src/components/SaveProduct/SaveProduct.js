@@ -74,9 +74,7 @@ const SaveProduct = () => {
                 (snapshot) => {
                     const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
                     setProgress(progress);
-                    console.log(progress)
                 }, (err) => {
-                    console.log(err);
                 }, () => {
                     storage.ref('ProductImages').child(`${imageName}${images.name}`).getDownloadURL()
                         .then(fireBaseUrl => {
@@ -94,8 +92,6 @@ const SaveProduct = () => {
     const passdataToFirebase = () => {
         setimagesUrl(imagesUrl.reverse());
         if (text.title != '' && text.description != ''&&price != null) {
-            console.log(text);
-            console.log(imagesUrl);
 
             db.collection('products').add({
                 details: text,

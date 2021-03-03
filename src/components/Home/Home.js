@@ -20,7 +20,6 @@ const Home = () => {
                     setElementNumber(snapshot.data().cart.length)
                 })
         } catch (error) {
-            console.log(error);
             setElementNumber(0)
         }
     }

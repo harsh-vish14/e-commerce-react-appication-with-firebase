@@ -20,11 +20,10 @@ const Login = () => {
     const loginbro = async () => {
         await auth.signInWithEmailAndPassword(formdata.email, formdata.password)
             .then((res) => {
-                console.log(res.user);
+               
                 setlogged(true);
                 setuser(res.user);
             }).catch((err) => {
-                console.log(err.message);
                 if (err.message == 'The email address is badly formatted.') {
                     setemailerror(true);
                 }
@@ -32,7 +31,6 @@ const Login = () => {
                     setnouser(true);
                 }
             })
-        console.log(formdata);
     }
     
     const valuechanged = (e) => {

@@ -3,7 +3,7 @@ import { BiRupee,MdRemoveShoppingCart } from 'react-icons/all'
 import NumberFormat from 'react-number-format'
 import { Link } from 'react-router-dom';
 
-const CartProduct = ({ detail,removeMe }) => {
+const CartProduct = ({ detail,removeMe,addOneMore,cartItemCount,removeOneMore }) => {
     return (
         <>
             <div className='cart_card' style={{ display: 'flex' }} id={detail.id}>
@@ -17,9 +17,9 @@ const CartProduct = ({ detail,removeMe }) => {
                 </div>
                 <div className="button">
                     <div class="btn-group" role="group" aria-label="Basic example" style={{marginRight:'5px'}}>
-                        <button type="button" class="btn btn-primary">-</button>
-                        <div class="btn btn-primary">1</div>
-                        <button type="button" class="btn btn-primary">+</button>
+                        <button type="button" class="btn btn-primary" onClick={()=>removeOneMore(detail.id)}>-</button>
+                            <div class="btn btn-primary"> {cartItemCount[detail.id]} </div>
+                        <button type="button" class="btn btn-primary" onClick={()=>addOneMore(detail.id)}>+</button>
                     </div>
                     <button type="button" class="btn btn-danger" onClick={()=>removeMe(detail.id)}> <MdRemoveShoppingCart/> Delete</button>
                 </div>

@@ -8,11 +8,13 @@ import {BiRupee,MdAddShoppingCart} from 'react-icons/all'
 import Navbar from '../Navbar/navbar';
 import firebase from 'firebase'
 import { UserContext } from '../../context/context';
+import { Redirect } from 'react-router-dom';
 
 const ProductDetails = ({ match }) => {
     const {
         params: { id }
     } = match
+    const [userhere, setuserhere] = useState(false);
     const [user, setuser] = useContext(UserContext).user
     const [elementNumber, setElementNumber] = useState(0);
     const [images, setImages] = useState([]);
@@ -21,6 +23,9 @@ const ProductDetails = ({ match }) => {
         content: '',
         price: 0
     })
+    useEffect(() => {
+        user ? setuserhere(true) : setuserhere(false);
+    }, []);
     const GetItemsNumberInCart = async () => {
         try {
             await db.collection('users').doc(user.uid).get()
@@ -28,7 +33,6 @@ const ProductDetails = ({ match }) => {
                     setElementNumber(snapshot.data().cart.length)
                 })
         } catch (error) {
-            console.log(error);
             setElementNumber(0)
         }
     }
@@ -48,6 +52,7 @@ const ProductDetails = ({ match }) => {
     useEffect(async () => {
         await getDetails();
         GetItemsNumberInCart()
+        
     }, [])
     const AddToCart = async (id) => {
        await db.collection('users').doc(user.uid).update({
@@ -56,9 +61,11 @@ const ProductDetails = ({ match }) => {
         GetItemsNumberInCart()
     }
     
+    
+
     return (
         <>
-            <Navbar elementNumber={elementNumber}/>
+            {userhere ? (<Navbar elementNumber={elementNumber}/>):(null)}
             <div className='details'>
             <div className="carousel">
                 <Carousel>
@@ -84,7 +91,7 @@ const ProductDetails = ({ match }) => {
                     <NumberFormat value={details.price} displayType={'text'} thousandSeparator={true} /> <BiRupee />
                 </div>
                     <div className="Addtocart">
-                        <button type="button" class="btn btn-success" onClick={()=>AddToCart(id)} style={{marginTop:'20px',padding:'5px 25px'}}><MdAddShoppingCart/> Add To Cart</button>
+                        <button type="button" class="btn btn-success" onClick={() => AddToCart(id)} style={{ marginTop: '20px', padding: '5px 25px' ,display:userhere?('block'):('none')}} ><MdAddShoppingCart/> Add To Cart</button>
                 </div>
             </div>
         </div>

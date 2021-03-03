@@ -17,7 +17,8 @@ const Register = () => {
     const [logged, setlogged] = useState(false);
     const [emailerror, setemailerror] = useState(false);
     const [user, setuser] = useContext(UserContext).user
-    const[email, setemail] = useState(false);
+    const [email, setemail] = useState(false);
+    const [smallPassword, setSmallPassword] = useState(false);
     const SignInWithGoogle = async () => {
         let user = await signInWithGoogle();
         if (user) {
@@ -32,7 +33,6 @@ const Register = () => {
     const registerbro = async () => {
         await auth.createUserWithEmailAndPassword(formdata.email, formdata.password)
             .then((res => {
-                console.log(res.user);
                 db.collection('users').doc(res.user.uid).set({
                     name: formdata.email.replace('@gmail.com',''),
                 },{ merge: true })
@@ -40,12 +40,14 @@ const Register = () => {
                 setuser(res.user);
             }))
             .catch((err) => {
-                console.log(err.message);
                 if (err.message == 'The email address is badly formatted.') {
                     setemailerror(true);
                 }
                 if (err.message == 'The email address is already in use by another account.') {
                     setemail(true);
+                }
+                if (err.message == 'Password should be at least 6 characters') {
+                    setSmallPassword(true)
                 }
             })
     };
@@ -79,6 +81,7 @@ const Register = () => {
                         <input name='password' type="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={valuechanged} value={formdata.password} />
                         <label for="floatingPassword">Password</label>
                     </div>
+                    {smallPassword ? (<div style={{ color: 'red' }}>Password Must be at least 6 characters</div>) : null}
                     <button type="button" class="btn btn-success" onClick={registerbro} style={{ marginTop: '10px' }}>Register <RiLock2Fill /></button>
                  <div>Already have Account? <Link to='/' style={{color:'#0247ae'}}>Login</Link></div>   
                 </div>
